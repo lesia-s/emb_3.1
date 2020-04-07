@@ -53,10 +53,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public int[] factFerma(int num) {
+        long start = System.currentTimeMillis();
         int[] resArr = new int[2];
         int x = (int)Math.sqrt(num) + 1;
         while (Math.sqrt(Math.pow(x, 2) - num) % 1 != 0) {
             x ++;
+            long finish = System.currentTimeMillis();
+            if (3000 <= finish - start) {
+                Toast.makeText(
+                        MainActivity.this, "Max time reached!", Toast.LENGTH_LONG
+                ).show();
+                break;
+            }
         }
         int y = (int)Math.sqrt(Math.pow(x, 2) - num);
         resArr[0] = x - y;
